@@ -18,12 +18,39 @@ public class Main {
         System.out.println(books[4].toString());
         System.out.println(books[5].toString());
 
-        int sumPrice = 0;
-        for (Book book : books) {
-            sumPrice += book.getPrice();
-        }
-        System.out.println("\nTotal Price Book= " + sumPrice + "$");
+        extracted(books);
 
+        extracted1(books);
+
+        extracted2(books);
+        
+        extracted3(books);
+    }
+
+    private static void extracted3(Book[] books) {
+        int countPrice=0;
+        for (Book book : books) {
+            if(book.getPrice()<100&&book instanceof FictionBook) {
+                countPrice++;
+            }
+        }
+        System.out.println("Total Book price is less than 100  " + countPrice + " Book");
+    }
+
+    private static void extracted2(Book[] books) {
+        int countCategory = 0;
+        for (Book book : books) {
+            if (book instanceof FictionBook) {
+                FictionBook fb = (FictionBook) book;
+                if (fb.getCategory().equals("Vien tuong 1")) {
+                    countCategory++;
+                }
+            }
+        }
+        System.out.println("Total Book Category is Vien tuong 1: " + countCategory + " Book");
+    }
+
+    private static void extracted1(Book[] books) {
         int countLanguage = 0;
         for (Book book : books) {
             if (book instanceof ProgrammingBook){
@@ -34,24 +61,13 @@ public class Main {
             }
         }
         System.out.println("Total Book language is Java: " + countLanguage + " Book");
+    }
 
-        int countCategory = 0;
+    private static void extracted(Book[] books) {
+        int sumPrice = 0;
         for (Book book : books) {
-            if (book instanceof FictionBook) {
-                FictionBook fb = (FictionBook) book;
-                if (fb.getCategory().equals("Vien tuong 1")) {
-                    countCategory++;
-                }
-            }
+            sumPrice += book.getPrice();
         }
-            System.out.println("Total Book Category is Vien tuong 1: " + countCategory + " Book");
-
-            int countPrice=0;
-            for (Book book : books) {
-                if(book.getPrice()<100&&book instanceof FictionBook) {
-                    countPrice++;
-                }
-            }
-            System.out.println("Total Book price is less than 100  " + countPrice + " Book");
+        System.out.println("\nTotal Price Book= " + sumPrice + "$");
     }
 }
